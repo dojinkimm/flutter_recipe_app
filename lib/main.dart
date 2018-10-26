@@ -4,17 +4,18 @@ import 'package:cookday/pages/splashscreen.dart';
 
 var routes = <String, WidgetBuilder>{
   "/home": (BuildContext context) => Home(),
+  "/splash": (BuildContext context) => SplashScreen(),
 };
 void main() {
   runApp(new MaterialApp(
     theme:
       ThemeData(
-          primaryColor: Color(0xFF4B3082),
-          primarySwatch: Colors.purple,
+          primaryColor: Colors.white,
           fontFamily: 'NotoSansCJKkr',
       ),
     debugShowCheckedModeBanner: false,
-    home: SplashScreen(),
+    home: Home(),
+    initialRoute: "/splash",
     routes: routes,
   ));
 }

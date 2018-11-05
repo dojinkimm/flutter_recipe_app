@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "856494453087",
+    "firebase_url": "https://cookday-d35b3.firebaseio.com",
+    "project_id": "cookday-d35b3",
+    "storage_bucket": "cookday-d35b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856494453087:android:c446aec5a640482d",
+        "android_client_info": {
+          "package_name": "com.example.cookday"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856494453087-gsrvhth9m8b7dqc5fbhvlc8ubpqoccjt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cookday",
+            "certificate_hash": "dd733e6b9d3193ee8ae7a4dafba132fdec67a907"
+          }
+        },
+        {
+          "client_id": "856494453087-ohoqp7u89v5gegpk84egs7lp2jhbm44f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcDc5wsCj8qJ98NSduv750p1jspuCpmXg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856494453087-ohoqp7u89v5gegpk84egs7lp2jhbm44f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "856494453087-s5rm6gaj913v8vb88av2b2kl2rn4soo4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cookday"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

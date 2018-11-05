@@ -19,6 +19,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
+  dots_indicator: ^0.0.4
+  flutter_speed_dial: ^1.0.8
+  barcode_scan: ^0.0.7
+
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +47,35 @@ flutter:
   assets:
     - images/cookdaylogo.png
     - images/cooksplash.jpg
+    - images/foodpic/duck.jpeg
+    - images/foodpic/duck1.jpeg
+    - images/foodpic/duck2.jpeg
+    - images/foodpic/duck3.jpeg
+    - images/foodpic/duck4.jpeg
+    - images/foodpic/duck5.jpeg
+    - images/foodpic/cheesepotato.jpeg
+    - images/foodpic/cheesepotato1.jpeg
+    - images/foodpic/cheesepotato2.jpeg
+    - images/foodpic/cheesepotato3.gif
+    - images/foodpic/cheesepotato4.jpeg
+    - images/foodpic/cookie.jpeg
+    - images/foodpic/cookie1.jpeg
+    - images/foodpic/cookie2.jpeg
+    - images/foodpic/cookie3.gif
+    - images/foodpic/cookie4.gif
+    - images/foodpic/cookie5.jpeg
+    - images/foodpic/cookie6.jpeg
+    - images/foodpic/cookie7.jpeg
+    - images/foodpic/cookie8.jpeg
+    - images/foodpic/cookie9.jpeg
+    - images/foodpic/cookie10.gif
+    - images/foodpic/cookie11.gif
+    - images/foodpic/cookie12.jpeg
+    - images/foodpic/bacon.jpeg
+    - images/foodpic/bacon1.jpeg
+    - images/foodpic/bacon2.jpeg
+    - images/foodpic/bacon3.jpeg
+  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

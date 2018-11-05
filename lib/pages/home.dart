@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cookday/pages/recommend/recommend.dart';
+// import 'package:cookday/pages/recommend/top_with_dots.dart';
 import 'package:cookday/pages/search/search.dart';
 import 'package:cookday/pages/myref/myref.dart';
 import 'package:cookday/pages/profile/profile.dart';
@@ -30,11 +31,12 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     _currentIndex = 0;
+    _colorOfApp[_currentIndex] = Color(0xFF4B3082); //홈화면 아이콘과 글자 색깔 보라로 변경
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _children = [
+    final List<Widget> _children = [//각각 page들
       new Recommend(),
       new Search(),
       new MyRecipe(),
@@ -56,9 +58,9 @@ class _HomeState extends State<Home> {
               }
             });
           },
-          currentIndex: _currentIndex,
+          currentIndex: _currentIndex, //현재 몇번쨰 index에 있는지 알려준다
           items: [
-            BottomNavigationBarItem(
+            BottomNavigationBarItem( //안눌렸을 떄는 grey 색이지만, 눌렸을 때는 보라색이 된다
                 icon: Icon(Icons.restaurant_menu, color: _colorOfApp[0]),
                 title: Text("홈",
                     style:

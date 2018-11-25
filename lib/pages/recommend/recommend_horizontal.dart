@@ -17,7 +17,7 @@ class _RecommendHorizontalState extends State<RecommendHorizontal> {
           Navigator.of(context).push(new PageRouteBuilder(
               pageBuilder: (BuildContext context, Animation<double> animation,
                       Animation<double> secondaryAnimation) =>
-                  new DetailedInfo(item: item),
+                  new DetailedInfo(uid: item),
               transitionsBuilder: (
                 BuildContext context,
                 Animation<double> animation,

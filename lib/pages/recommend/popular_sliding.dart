@@ -9,7 +9,6 @@ class PopularSliding extends StatefulWidget {
 }
 
 class _PopularSlidingState extends State<PopularSliding> {
-  String _fontFamily = "Hanna";
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -40,7 +39,7 @@ class _PopularSlidingState extends State<PopularSliding> {
     return CarouselSlider(
       height: MediaQuery.of(context).size.height * 0.4,
       aspectRatio: 16 / 9,
-      viewportFraction: 0.7,
+      viewportFraction: 0.85,
       autoPlay: true,
       items: [
         indivItems(lis[0]['uid'], lis[0]['imageURL'], lis[0]['recipeName'],
@@ -91,63 +90,75 @@ class _PopularSlidingState extends State<PopularSliding> {
                   Image.network(
                     url,
                     fit: BoxFit.fill,
-                    width: MediaQuery.of(context).size.width * 0.65,
+                    width: MediaQuery.of(context).size.width * 0.75,
                     height: MediaQuery.of(context).size.height * 0.4,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.65,
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: FractionalOffset.center,
+                          end: FractionalOffset.bottomCenter,
+                          stops: [0.0, 0.85],
+                          colors: [
+                            Colors.black.withOpacity(0.1),
+                            Colors.black.withOpacity(0.5)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.75,
                     padding: EdgeInsets.fromLTRB(20.0,
                         MediaQuery.of(context).size.height * 0.25, 20.0, 20.0),
-                    child: Card(
-                      child: Column(
-                        children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              padding: EdgeInsets.only(top: 15.0),
-                              child: Text(title,
-                                  style: TextStyle(
-                                      fontFamily: _fontFamily, fontSize: 18.0)),
-                            ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(top: 15.0),
+                            child: Text(title,
+                                style: TextStyle(
+                                    fontSize: 20.0, color: Colors.white)),
                           ),
-                          Expanded(
-                            child: Container(
-                                child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(
-                                  Icons.timelapse,
-                                  color: Colors.grey[600],
-                                  size: 20.0,
-                                ),
-                                SizedBox(
-                                  width: 5.0,
-                                ),
-                                Text("$cookTime 분",
-                                    style: TextStyle(
-                                        fontFamily: _fontFamily,
-                                        fontSize: 15.0,
-                                        color: Colors.grey[600])),
-                                SizedBox(
-                                  width: 20.0,
-                                ),
-                                Icon(
-                                  Icons.thumb_up,
-                                  color: Colors.grey[600],
-                                  size: 20.0,
-                                ),
-                                SizedBox(
-                                  width: 5.0,
-                                ),
-                                Text("${recommend.toString()}",
-                                    style: TextStyle(
-                                        fontFamily: _fontFamily,
-                                        fontSize: 15.0,
-                                        color: Colors.grey[600])),
-                              ],
-                            )),
-                          )
-                        ],
-                      ),
+                        ),
+                        Expanded(
+                          child: Container(
+                              child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Icon(
+                                Icons.timelapse,
+                                color: Colors.white,
+                                size: 20.0,
+                              ),
+                              SizedBox(
+                                width: 5.0,
+                              ),
+                              Text("$cookTime 분",
+                                  style: TextStyle(
+                                      fontSize: 15.0, color: Colors.white)),
+                              SizedBox(
+                                width: 50.0,
+                              ),
+                              Icon(
+                                Icons.thumb_up,
+                                color: Colors.white,
+                                size: 20.0,
+                              ),
+                              SizedBox(
+                                width: 5.0,
+                              ),
+                              Text("${recommend.toString()}",
+                                  style: TextStyle(
+                                      fontSize: 15.0, color: Colors.white)),
+                            ],
+                          )),
+                        )
+                      ],
                     ),
                   )
                 ],

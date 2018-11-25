@@ -54,13 +54,27 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Opacity(
-            opacity: 0.5,
-            child: Container(
+          Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('images/cooksplash.jpg'),
+                    fit: BoxFit.cover)),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.65,
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: DecoratedBox(
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('images/cooksplash.jpg'),
-                      fit: BoxFit.cover)),
+                gradient: LinearGradient(
+                  begin: FractionalOffset.center,
+                  end: FractionalOffset.bottomCenter,
+                  stops: [0.0, 0.85],
+                  colors: [
+                    Colors.black.withOpacity(0.0),
+                    Colors.black.withOpacity(0.5)
+                  ],
+                ),
+              ),
             ),
           ),
           Column(

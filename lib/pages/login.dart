@@ -73,13 +73,27 @@ class _LoginState extends State<Login> {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Opacity(
-            opacity: 0.4,
-            child: Container(
+          Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('images/refrige.jpg'),
+                    fit: BoxFit.cover)),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.65,
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: DecoratedBox(
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('images/refrige.jpg'),
-                      fit: BoxFit.cover)),
+                gradient: LinearGradient(
+                  begin: FractionalOffset.center,
+                  end: FractionalOffset.bottomCenter,
+                  stops: [0.0, 0.85],
+                  colors: [
+                    Colors.black.withOpacity(0.1),
+                    Colors.black.withOpacity(0.5)
+                  ],
+                ),
+              ),
             ),
           ),
           Container(
@@ -112,7 +126,7 @@ class _LoginState extends State<Login> {
                 ),
                 FlatButton(
                   child: Image.asset("images/glogin.png", width: 180.0),
-                  onPressed: () =>_signGoogle(),
+                  onPressed: () => _signGoogle(),
                 )
               ],
             ),

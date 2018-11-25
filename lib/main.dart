@@ -15,8 +15,7 @@ void main() {
     theme:
       ThemeData(
           primaryColor: Colors.white,
-          primarySwatch: Colors.deepPurple,
-          fontFamily: 'NotoSansCJKkr',
+          fontFamily: 'Hanna',
       ),
     debugShowCheckedModeBanner: false,
     home: Home(),

@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:cookday/pages/home.dart';
+import 'package:cookday/pages/mynavigator.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -35,6 +36,7 @@ class _LoginState extends State<Login> {
     Firestore.instance.document('users/${user.uid}').get().then((docSnap) {
       if (docSnap.data == null) {
         _newUserSaveDB();
+         MyNavigator.goToInitProfile(context, user.uid);
       } else {
         Firestore.instance.document('users/${user.uid}').updateData({
           'lastLoginDate': new DateTime.now(),
@@ -65,6 +67,8 @@ class _LoginState extends State<Login> {
       }).catchError((e) => print(e));
     });
     //여기에서 저장된 데이터들을 DB로 올림
+
+
   }
 
   @override
@@ -80,21 +84,9 @@ class _LoginState extends State<Login> {
                     fit: BoxFit.cover)),
           ),
           Container(
-            width: MediaQuery.of(context).size.width * 0.65,
-            height: MediaQuery.of(context).size.height * 0.4,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: FractionalOffset.center,
-                  end: FractionalOffset.bottomCenter,
-                  stops: [0.0, 0.85],
-                  colors: [
-                    Colors.black.withOpacity(0.1),
-                    Colors.black.withOpacity(0.5)
-                  ],
-                ),
-              ),
-            ),
+            color:  Colors.black.withOpacity(0.55),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
           ),
           Container(
             child: Column(

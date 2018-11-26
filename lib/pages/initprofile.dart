@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cookday/pages/home.dart';
 
 class InitProfile extends StatefulWidget {
+  final uid;
+  InitProfile({Key key, this.uid}) : super(key : key);
   @override
   _InitProfileState createState() => _InitProfileState();
 }

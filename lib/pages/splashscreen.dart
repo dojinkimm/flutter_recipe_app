@@ -14,7 +14,8 @@ class _SplashScreenState extends State<SplashScreen> {
   String _uid = "";
 
   void navigationPage() {
-    MyNavigator.goToHome(context, _uid);
+    // MyNavigator.goToHome(context, _uid);
+    Navigator.pop(context, _uid);
   }
 
   @override
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
       else {
         Firestore.instance.document('users/${user.uid}').get().then((docSnap) {
           if (docSnap.data == null) {
-            MyNavigator.goToInitProfile(context);
+            MyNavigator.goToInitProfile(context, user.uid);
           } else {
             _uid = docSnap.data['uid'];
             Timer(Duration(seconds: 2), navigationPage);

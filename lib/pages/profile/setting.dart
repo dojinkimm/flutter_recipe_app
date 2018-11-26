@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'dart:async';
+
+import 'package:cookday/pages/login.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
+final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 class Setting extends StatefulWidget {
   @override
@@ -65,9 +74,26 @@ class SettingState extends State<Setting> {
                   print("고객센터페이지");
                 },
               ),
+              ListTile(
+                leading: Icon(Icons.exit_to_app),
+                title: Text("로그아웃"),
+                onTap: () =>_logout(),
+              ),
             ],
           ),
         ));
+  }
+
+    Future _logout() async {
+    print("logout");
+    await _auth.signOut();
+    await _googleSignIn.signOut().whenComplete(() {
+    
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => Login()),
+          ModalRoute.withName('/login'));
+    });
   }
 }
 
@@ -114,6 +140,7 @@ class NotificationState extends State<Notification> {
       ),
     );
   }
+
 }
 
 class Notice extends StatefulWidget {
@@ -132,3 +159,4 @@ class NoticeState extends State<Notice> {
     );
   }
 }
+

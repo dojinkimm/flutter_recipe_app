@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
       new Recommend(),
       new Search(),
       new MyRef(),
-      new Profile(uid: widget.uid,)
+      new Profile(uid: widget.uid)
     ];
 
     return Scaffold(

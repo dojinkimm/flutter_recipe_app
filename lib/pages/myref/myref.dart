@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:cookday/pages/myref/tools.dart';
-import 'package:cookday/pages/myref/ingredients.dart';
 import 'package:cookday/pages/myref/floating_menu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Buttons extends StatefulWidget {
   final Icon icon;
   final Text name;
-  Buttons({Key key, this.icon = const Icon(Icons.border_outer), @required this.name}) : super(key: key);
+  Buttons(
+      {Key key,
+      this.icon = const Icon(Icons.border_outer),
+      @required this.name})
+      : super(key: key);
 
   @override
   _ButtonsState createState() => _ButtonsState(name: name, icon: icon);
@@ -23,7 +25,7 @@ class _ButtonsState extends State<Buttons> {
 
   void _choice() {
     setState(() {
-      if(choice) {
+      if (choice) {
         choice = false;
       } else {
         choice = true;
@@ -33,7 +35,6 @@ class _ButtonsState extends State<Buttons> {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Container(
@@ -53,7 +54,6 @@ class _ButtonsState extends State<Buttons> {
 }
 
 class MyRef extends StatelessWidget {
-
   /*
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot> (
@@ -130,59 +130,43 @@ class MyRef extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: DefaultTabController(
-            length: choices.length,
-            child: Scaffold(
-                appBar: AppBar(
-                  
-                  backgroundColor: Colors.white,
-                  iconTheme: IconThemeData(color: Colors.black54),
-                  leading: IconButton(
-                      icon: Icon(Icons.menu),
-                      onPressed: () {}
-                  ),
-                  title: Row(
-                    children: <Widget>[
-                      Text(
-                        "Cook Day",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54
-                        ),
-                      ),
-                    ],
-                  ),
-                  actions: <Widget>[
-                    IconButton(
-                        icon: Icon(Icons.settings),
-                        onPressed: () {}
-                    ),
-                  ],
-                  bottom: TabBar(
-                    labelColor: Color(0xFF4B3082),
-                    indicatorColor: Color(0xFF4B3082),
-                    unselectedLabelColor: Colors.grey,
-                    isScrollable: true,
-                    tabs: choices.map((Choice choice) {
-                      return Tab(
-                        text: choice.title,
-                        icon: Icon(choice.icon),
-                      );
-                    }).toList(),
-                  ),
+    return DefaultTabController(
+        length: choices.length,
+        child: Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: Colors.white,
+              title: new Text(
+                "CookDay",
+                style: TextStyle(
+                  fontFamily: 'Dancing',
+                  fontSize: 40.0,
+                  fontWeight: FontWeight.bold,
+                  color: const Color(0xFFFF6347),
                 ),
-                body: TabBarView(
-                  children: choices.map((Choice choice) {
-                    return Padding(
-                      padding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
-                      child: ChoiceCard(choice: choice),
-                    );
-                  }).toList(),
-                )
-            )
-        )
-    );
+              ),
+              iconTheme: IconThemeData(color: Colors.black54),
+              bottom: TabBar(
+                labelColor: Color(0xFF4B3082),
+                indicatorColor: Color(0xFF4B3082),
+                unselectedLabelColor: Colors.grey,
+                isScrollable: true,
+                tabs: choices.map((Choice choice) {
+                  return Tab(
+                    text: choice.title,
+                    icon: Icon(choice.icon),
+                  );
+                }).toList(),
+              ),
+            ),
+            body: TabBarView(
+              children: choices.map((Choice choice) {
+                return Padding(
+                  padding: EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                  child: ChoiceCard(choice: choice),
+                );
+              }).toList(),
+            )));
   }
 }
 
@@ -192,13 +176,13 @@ class Item {
   final DocumentReference reference;
 
   Item.fromMap(Map<String, dynamic> map, {this.reference})
-    : assert(map['category'] != null),
-      assert(map['item'] != null),
-      category = map['category'],
-      item = map['item'];
+      : assert(map['category'] != null),
+        assert(map['item'] != null),
+        category = map['category'],
+        item = map['item'];
 
   Item.fromSnapshot(DocumentSnapshot snapshot)
-    : this.fromMap(snapshot.data, reference: snapshot.reference);
+      : this.fromMap(snapshot.data, reference: snapshot.reference);
 }
 
 class Choice {
@@ -209,11 +193,33 @@ class Choice {
   final List<String> item;
 }
 
-const List<Choice> choices = const <Choice> [
-  const Choice(title: '육류', icon: Icons.add, item: ["소고기", "돼지고기", "계란", "닭고기", "오리고기", "돈까스"]),
-  const Choice(title: '해산물', icon: Icons.add, item: ["고등어", "갈치", "멸치", "조기", "연어", "새우", "꽃게", "바지락", "홍합"]),
-  const Choice(title: '채소/과일', icon: Icons.add, item: ["대파", "양파", "무", "마늘", "양배추", "배추", "사과", "바나나", "복숭아", "귤", "오렌지", "수박"]),
-  const Choice(title: '조리도구', icon: Icons.add, item: ["전자레인지", "오븐", "가스레인지", "에어프라이기", "믹서", "토스트"]),
+const List<Choice> choices = const <Choice>[
+  const Choice(
+      title: '육류',
+      icon: Icons.add,
+      item: ["소고기", "돼지고기", "계란", "닭고기", "오리고기", "돈까스"]),
+  const Choice(
+      title: '해산물',
+      icon: Icons.add,
+      item: ["고등어", "갈치", "멸치", "조기", "연어", "새우", "꽃게", "바지락", "홍합"]),
+  const Choice(title: '채소/과일', icon: Icons.add, item: [
+    "대파",
+    "양파",
+    "무",
+    "마늘",
+    "양배추",
+    "배추",
+    "사과",
+    "바나나",
+    "복숭아",
+    "귤",
+    "오렌지",
+    "수박"
+  ]),
+  const Choice(
+      title: '조리도구',
+      icon: Icons.add,
+      item: ["전자레인지", "오븐", "가스레인지", "에어프라이기", "믹서", "토스트"]),
 ];
 
 class ItemCard extends StatelessWidget {

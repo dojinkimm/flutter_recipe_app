@@ -39,7 +39,7 @@ class _PopularSlidingState extends State<PopularSliding> {
     return CarouselSlider(
       height: MediaQuery.of(context).size.height * 0.4,
       aspectRatio: 16 / 9,
-      viewportFraction: 0.85,
+      viewportFraction: 0.9,
       autoPlay: true,
       items: [
         indivItems(lis[0]['uid'], lis[0]['imageURL'], lis[0]['recipeName'],
@@ -90,11 +90,11 @@ class _PopularSlidingState extends State<PopularSliding> {
                   Image.network(
                     url,
                     fit: BoxFit.fill,
-                    width: MediaQuery.of(context).size.width * 0.75,
+                    width: MediaQuery.of(context).size.width * 0.85,
                     height: MediaQuery.of(context).size.height * 0.4,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.75,
+                    width: MediaQuery.of(context).size.width * 0.85,
                     height: MediaQuery.of(context).size.height * 0.4,
                     child: DecoratedBox(
                       decoration: BoxDecoration(

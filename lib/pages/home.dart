@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:cookday/pages/recommend/recommend.dart';
-// import 'package:cookday/pages/recommend/top_with_dots.dart';
 import 'package:cookday/pages/search/search.dart';
 import 'package:cookday/pages/myref/myref.dart';
 import 'package:cookday/pages/profile/profile.dart';

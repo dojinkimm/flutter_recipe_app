@@ -58,7 +58,6 @@ class _RecommendHorizontalState extends State<RecommendHorizontal> {
             children: <Widget>[
               Expanded(
                   flex: 5,
-                  //이미지 부분에 hero를 적용해서 디테일 페이지로 넘어갈때 애니메이션이 적용되게 했다
                   child: Image.network(item['imageURL'], fit: BoxFit.fitWidth)),
             ],
           )),

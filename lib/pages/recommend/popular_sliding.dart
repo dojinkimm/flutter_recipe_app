@@ -103,8 +103,8 @@ class _PopularSlidingState extends State<PopularSliding> {
                           end: FractionalOffset.bottomCenter,
                           stops: [0.0, 0.85],
                           colors: [
-                            Colors.black.withOpacity(0.1),
-                            Colors.black.withOpacity(0.5)
+                            Colors.white.withOpacity(0.0),
+                            Colors.black.withOpacity(0.6)
                           ],
                         ),
                       ),
@@ -122,7 +122,7 @@ class _PopularSlidingState extends State<PopularSliding> {
                             padding: EdgeInsets.only(top: 15.0),
                             child: Text(title,
                                 style: TextStyle(
-                                    fontSize: 20.0, color: Colors.white)),
+                                    fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold)),
                           ),
                         ),
                         Expanded(

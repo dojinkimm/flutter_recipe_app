@@ -60,7 +60,8 @@ class _LoginState extends State<Login> {
         'uid': user.uid,
         'photoURL': user.photoUrl,
         'email': user.email,
-        'lastLoginDate': new DateTime.now()
+        'lastLoginDate': new DateTime.now(),
+        'saved' : []
       }).then((d) {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Home(uid: user.uid)));

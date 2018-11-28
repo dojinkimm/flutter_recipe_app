@@ -14,8 +14,9 @@ class _SplashScreenState extends State<SplashScreen> {
   String _uid = "";
 
   void navigationPage() {
-    // MyNavigator.goToHome(context, _uid);
-    Navigator.pop(context, _uid);
+    MyNavigator.goToHome(context, _uid);
+    // Navigator.pop(context, _uid);
+    print("UID in splash $_uid");
   }
 
   @override
@@ -30,7 +31,9 @@ class _SplashScreenState extends State<SplashScreen> {
           if (docSnap.data == null) {
             MyNavigator.goToInitProfile(context, user.uid);
           } else {
-            _uid = docSnap.data['uid'];
+            setState(() {
+              _uid = docSnap.data['uid'];
+            });
             Timer(Duration(seconds: 2), navigationPage);
 
             // update the last Login Date when signed user start app.

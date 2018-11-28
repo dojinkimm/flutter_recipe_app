@@ -16,6 +16,7 @@ void main() {
       ThemeData(
           primaryColor: Colors.white,
           fontFamily: 'Hanna',
+          primarySwatch: Colors.teal,
       ),
     debugShowCheckedModeBanner: false,
     home: Home(),

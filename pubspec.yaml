@@ -66,6 +66,8 @@ flutter:
     - images/ingredients/other.png
     - images/ingredients/tools.png
     - images/ingredients/009-kettle.png
+    - images/appbar.jpg
+    - images/appbar.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

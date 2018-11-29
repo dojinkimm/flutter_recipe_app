@@ -15,10 +15,10 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex;
   List<Color> _colorOfApp = [
-    Colors.black54,
-    Colors.black54,
-    Colors.black54,
-    Colors.black54,
+    Colors.grey,
+    Colors.grey,
+    Colors.grey,
+    Colors.grey,
   ];
   //color of navigation item text & icon
 
@@ -50,11 +50,11 @@ class _HomeState extends State<Home> {
           onTap: (int index) {
             setState(() {
               _currentIndex = index; //아이템 누르면 index지정한다
-              _colorOfApp[_currentIndex] =   const Color(0xFFFF6347); //현재 누른 아이콘 색깔 변경
+              _colorOfApp[_currentIndex] =   Colors.black; //현재 누른 아이콘 색깔 변경
               for (int i = 0; i < _colorOfApp.length; i++) {
                 //나머지 아이콘들 색깔 원위치
                 if (i == _currentIndex) continue;
-                _colorOfApp[i] = Colors.black54;
+                _colorOfApp[i] = Colors.grey;
               }
             });
           },

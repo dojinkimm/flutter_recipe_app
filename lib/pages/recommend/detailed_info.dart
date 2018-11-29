@@ -68,8 +68,8 @@ class _DetailedInfoState extends State<DetailedInfo> {
           child: ListView(
             children: <Widget>[
               _buildIngredients(recipe['ingredients']), //재료들을 정리한 부분
-              // _buildSteps(
-              //     recipe['steps'], recipe['stepPic']) //음식 만드는데 필요한 스텝들을 정리한 부분
+              _buildSteps(
+                  recipe['steps'], recipe['stepPic']) //음식 만드는데 필요한 스텝들을 정리한 부분
             ],
           ),
         ));
@@ -136,18 +136,21 @@ class _DetailedInfoState extends State<DetailedInfo> {
                           .document(user.uid)
                           .updateData({'saved': recipeUid});
                     });
-                  } 
+                  }
                 },
               )
             ],
           ),
         ),
         Container(
-          padding: EdgeInsets.only(bottom: 15.0),
-          child: Center(
-            child: Icon(Icons.arrow_drop_down, color: Colors.white, size: 50.0,),
-          )
-        )
+            padding: EdgeInsets.only(bottom: 15.0),
+            child: Center(
+              child: Icon(
+                Icons.arrow_drop_down,
+                color: Colors.white,
+                size: 50.0,
+              ),
+            ))
       ],
     ));
   }
@@ -189,61 +192,61 @@ class _DetailedInfoState extends State<DetailedInfo> {
         )));
   }
 
-  // Widget _buildSteps(List steps, List stepPics) {
-  //   //요리 하기에 필요한 step들 표시
-  //   return Container(
-  //     padding: EdgeInsets.only(top: 20.0),
-  //     child: Column(
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: <Widget>[
-  //         Padding(
-  //           padding: EdgeInsets.only(left: 20.0, bottom: 10.0),
-  //           child: Text("Steps",
-  //               style: TextStyle(
-  //                   color: Colors.black,
-  //                   fontSize: 20.0,
-  //                   fontWeight: FontWeight.bold)),
-  //         ),
-  //         Column(
-  //             children: List.generate(steps.length, (index) {
-  //           return Container(
-  //               padding: EdgeInsets.all(10.0),
-  //               child: Card(
-  //                 child: Column(
-  //                   crossAxisAlignment: CrossAxisAlignment.start,
-  //                   children: <Widget>[
-  //                     Container(
-  //                       child: Image.network(
-  //                         stepPics[index],
-  //                         fit: BoxFit.fill,
-  //                       ),
-  //                     ),
-  //                     SizedBox(height: 10.0),
-  //                     Container(
-  //                         padding: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 10.0),
-  //                         child: Text(
-  //                           "단계 ${index + 1}/${steps.length}",
-  //                           style: TextStyle(
-  //                             fontSize: 18.0,
-  //                             fontWeight: FontWeight.w400,
-  //                           ),
-  //                         )),
-  //                     Container(
-  //                       padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-  //                       child: Text(
-  //                         steps[index],
-  //                         softWrap: true,
-  //                         style: TextStyle(fontSize: 15.0),
-  //                       ),
-  //                     ),
-  //                   ],
-  //                 ),
-  //               ));
-  //         }))
-  //       ],
-  //     ),
-  //   );
-  // }
+  Widget _buildSteps(List steps, List stepPics) {
+    //요리 하기에 필요한 step들 표시
+    return Container(
+      padding: EdgeInsets.only(top: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(left: 20.0, bottom: 10.0),
+            child: Text("Steps",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold)),
+          ),
+          Column(
+              children: List.generate(steps.length, (index) {
+            return Container(
+                padding: EdgeInsets.all(10.0),
+                child: Card(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        child: Image.network(
+                          stepPics[index],
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      SizedBox(height: 10.0),
+                      Container(
+                          padding: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 10.0),
+                          child: Text(
+                            "단계 ${index + 1}/${steps.length}",
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          )),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                        child: Text(
+                          steps[index],
+                          softWrap: true,
+                          style: TextStyle(fontSize: 15.0),
+                        ),
+                      ),
+                    ],
+                  ),
+                ));
+          }))
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

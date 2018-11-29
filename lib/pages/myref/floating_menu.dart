@@ -158,7 +158,7 @@ class _FloatingMenuState extends State<FloatingMenu> {
                                     padding: const EdgeInsets.all(15.0),
                                     child: new TextField(
                                       decoration: InputDecoration(
-                                        hintText: "이름을 써주세요"
+                                        hintText: "ex. 등심"
                                       ),
                                       controller: _controllerIngred,
                                     ),
@@ -174,7 +174,7 @@ class _FloatingMenuState extends State<FloatingMenu> {
                                     padding: const EdgeInsets.all(15.0),
                                     child: new TextField(
                                       decoration: InputDecoration(
-                                        hintText: "양을 써주세요"
+                                        hintText: "ex. 200g"
                                       ),
                                       controller: _controllerQuantity,
                                     ),
@@ -212,11 +212,11 @@ class _FloatingMenuState extends State<FloatingMenu> {
                                 child: Text(
                                   "취소하기",
                                   style:
-                                      TextStyle(color: const Color(0xFFFF6347)),
+                                      TextStyle(color: Colors.grey),
                                 ),
                               ),
                               RaisedButton(
-                                  color: const Color(0xFFFF6347),
+                                  color: Colors.grey,
                                   child: Text(
                                     "저장하기",
                                     style: TextStyle(color: Colors.white),
@@ -259,8 +259,8 @@ class _FloatingMenuState extends State<FloatingMenu> {
   _renderSpeedDial() {
     return SpeedDial(
       elevation: 3.0,
-      backgroundColor: const Color(0xFFFF6347),
-      child: Icon(Icons.add),
+      backgroundColor: Colors.white,
+      child: Icon(Icons.add,color: Colors.black,),
       // animatedIcon: AnimatedIcons.menu_close,
       animatedIconTheme: IconThemeData(size: 22.0),
       onOpen: () => print('OPENING DIAL'),

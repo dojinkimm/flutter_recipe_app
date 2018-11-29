@@ -12,12 +12,12 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
-  Widget _buildGridCards(
-      BuildContext context, String foodDetail, String category) {
+  Widget _buildGridCards(BuildContext context, String foodDetail,
+      String foodQuantity, String category) {
     return Container(
         child: InkWell(
       onLongPress: () {
-        delete(context, category, foodDetail);
+        delete(context, foodDetail, foodQuantity,category);
       },
       child: Card(
         child: Row(
@@ -28,21 +28,32 @@ class _CategoryState extends State<Category> {
                 'images/ingredients/$category\.png',
               ),
             ),
-            Container(
-              child: Text(
-                foodDetail,
-                style: TextStyle(
-                  fontSize: 20.0,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    foodDetail,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),
+                  ),
                 ),
-              ),
-            ),
+                Container(
+                  child: Text(
+                    foodQuantity,
+                    style: TextStyle(fontSize: 12.0, color: Colors.grey),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
     ));
   }
 
-  Widget _buildGrid(List item, String category) {
+  Widget _buildGrid(List item, List quantity, String category) {
     return GridView.builder(
         gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, childAspectRatio: 1.5),
@@ -50,7 +61,8 @@ class _CategoryState extends State<Category> {
         itemCount: item.length,
         itemBuilder: (_, int index) {
           final String foodDetail = item[index];
-          return _buildGridCards(context, foodDetail, category);
+          final String foodQuantity = quantity[index];
+          return _buildGridCards(context, foodDetail, foodQuantity, category);
         });
   }
 
@@ -78,7 +90,8 @@ class _CategoryState extends State<Category> {
                 );
               } else {
                 return Container(
-                  child: _buildGrid(document['item'], widget.category),
+                  child: _buildGrid(
+                      document['item'], document['quantity'], widget.category),
                 );
               }
             } else {

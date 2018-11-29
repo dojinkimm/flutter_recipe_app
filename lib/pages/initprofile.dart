@@ -98,7 +98,7 @@ class _InitProfileState extends State<InitProfile> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => Home()));
+                          builder: (BuildContext context) => Home(uid: widget.uid,)));
                 },
               )
             ],

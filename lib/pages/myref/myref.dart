@@ -5,7 +5,6 @@ import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:cookday/model/ingredients.dart';
 import 'package:cookday/pages/myref/category.dart';
 
-
 class MyRef extends StatefulWidget {
   final uid;
   MyRef({Key key, this.uid}) : super(key: key);
@@ -15,6 +14,7 @@ class MyRef extends StatefulWidget {
 
 class _MyRefState extends State<MyRef> with SingleTickerProviderStateMixin {
   TabController _tabController;
+  bool selected;
 
   @override
   void initState() {
@@ -56,16 +56,35 @@ class _MyRefState extends State<MyRef> with SingleTickerProviderStateMixin {
 
   Widget _buildAppBar(BuildContext context) {
     return SliverAppBar(
-      title: new Text(
-        "마이 냉장고",
-        style: TextStyle(
-          fontSize: 40.0,
-          fontWeight: FontWeight.bold,
-          color: const Color(0xFFFF6347),
-        ),
+      expandedHeight: MediaQuery.of(context).size.height * 0.22,
+      automaticallyImplyLeading: false,
+      flexibleSpace: FlexibleSpaceBar(
+        background: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.22,
+            child: Stack(
+              fit: StackFit.expand,
+              children: <Widget>[
+                Image.asset('images/appbar.png', fit: BoxFit.fill),
+                Container(
+                  color: Colors.black.withOpacity(0.3),
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 50.0),
+                  child: Center(
+                    child: Text(
+                      "나만의 냉장고",
+                      style: TextStyle(color: Colors.white, fontSize: 40.0),
+                    ),
+                  ),
+                )
+              ],
+            )),
       ),
       bottom: TabBar(
         isScrollable: true,
+        labelColor: Colors.black,
+        unselectedLabelColor: Colors.white,
         tabs: <Widget>[
           Tab(text: totalList[0].category, icon: Image.asset(totalList[0].url)),
           Tab(text: totalList[1].category, icon: Image.asset(totalList[1].url)),
@@ -80,7 +99,7 @@ class _MyRefState extends State<MyRef> with SingleTickerProviderStateMixin {
         indicatorSize: TabBarIndicatorSize.tab,
         indicator: new BubbleTabIndicator(
           indicatorHeight: 60.0,
-          indicatorColor: const Color(0xFFFF6347),
+          indicatorColor: Colors.white,
           tabBarIndicatorSize: TabBarIndicatorSize.tab,
         ),
       ),

@@ -64,6 +64,16 @@ class _RecommendHorizontalState extends State<RecommendHorizontal> {
         ));
   }
 
+  Widget _buildList(List<DocumentSnapshot> recipe) {
+    return ListView(
+        scrollDirection: Axis.horizontal,
+        children: List.generate(recipe.length, (int index) {
+          //item을 하나씩 가로로 정렬한다
+          final item = recipe[index];
+          return _buildRow(item);
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     //가로로 정렬한 item들 generator
@@ -95,13 +105,5 @@ class _RecommendHorizontalState extends State<RecommendHorizontal> {
         });
   }
 
-  Widget _buildList(List<DocumentSnapshot> recipe) {
-    return ListView(
-        scrollDirection: Axis.horizontal,
-        children: List.generate(recipe.length, (int index) {
-          //item을 하나씩 가로로 정렬한다
-          final item = recipe[index];
-          return _buildRow(item);
-        }));
-  }
+  
 }

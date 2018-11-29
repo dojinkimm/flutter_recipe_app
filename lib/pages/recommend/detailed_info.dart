@@ -109,7 +109,7 @@ class _DetailedInfoState extends State<DetailedInfo> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 50.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
                   recipeName,
                   style: TextStyle(
@@ -119,7 +119,7 @@ class _DetailedInfoState extends State<DetailedInfo> {
                 ),
               ),
               IconButton(
-                padding: EdgeInsets.only(bottom: 50.0, right: 30.0),
+                padding: EdgeInsets.only(right: 30.0),
                 icon: Icon(
                   likeThis ? Icons.favorite : Icons.favorite_border,
                   size: 30.0,
@@ -141,6 +141,12 @@ class _DetailedInfoState extends State<DetailedInfo> {
               )
             ],
           ),
+        ),
+        Container(
+          padding: EdgeInsets.only(bottom: 15.0),
+          child: Center(
+            child: Icon(Icons.arrow_drop_down, color: Colors.white, size: 50.0,),
+          )
         )
       ],
     ));

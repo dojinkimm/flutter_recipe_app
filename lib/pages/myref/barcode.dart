@@ -18,12 +18,13 @@ class _BarcodeState extends State<Barcode> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       home: new Scaffold(
           appBar: new AppBar(
-            automaticallyImplyLeading: false,
+            automaticallyImplyLeading: true,
             title: new Text('Barcode Scanner Example'),
           ),
           body: new Center(

@@ -29,6 +29,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    print("HOME에서 ${widget.uid}");
     _currentIndex = 0;
     _colorOfApp[_currentIndex] =  const Color(0xFFFF6347); //홈화면 아이콘과 글자 색깔 보라로 변경
   }
@@ -39,7 +40,7 @@ class _HomeState extends State<Home> {
       //각각 page들
       new Recommend(),
       new Search(),
-      new MyRef(),
+      new MyRef(uid: widget.uid),
       new Profile(uid: widget.uid)
     ];
 

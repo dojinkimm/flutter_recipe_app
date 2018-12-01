@@ -7,6 +7,8 @@ import 'package:cookday/model/suggest.dart';
 import 'package:cookday/pages/search/result_search.dart';
 
 class Search extends StatefulWidget {
+  final uid; //user의 uid
+  Search({Key key, this.uid}) :super (key : key);
   @override
   _SearchState createState() => _SearchState();
 }
@@ -28,7 +30,7 @@ class _SearchState extends State<Search> {
       onTap: (){
          Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
-                                ResultSearch(category: document.category, name:document.name)));
+                                ResultSearch(category: document.category, name:document.name, userUid: widget.uid)));
       },//테마별 리스트 나오게 구현해야함
       child: Card(
       child: Stack(
@@ -104,7 +106,7 @@ class _SearchState extends State<Search> {
                       onSuggestionSelected: (suggestion) {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) =>
-                                DetailedInfo(uid: suggestion['uid'])));
+                                DetailedInfo(uid: suggestion['uid'], userUid: widget.uid)));
                       },
                     );
                   } else {

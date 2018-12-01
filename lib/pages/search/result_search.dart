@@ -5,7 +5,9 @@ import 'package:cookday/pages/recommend/detailed_info.dart';
 class ResultSearch extends StatefulWidget {
   final category;
   final name;
-  ResultSearch({Key key, this.category, this.name}) : super(key: key);
+  final userUid;
+  ResultSearch({Key key, this.category, this.name, this.userUid})
+      : super(key: key);
   @override
   _ResultSearchState createState() => _ResultSearchState();
 }
@@ -18,7 +20,7 @@ class _ResultSearchState extends State<ResultSearch> {
         Navigator.of(context).push(new PageRouteBuilder(
             pageBuilder: (BuildContext context, Animation<double> animation,
                     Animation<double> secondaryAnimation) =>
-                new DetailedInfo(uid: recipe['uid']),
+                new DetailedInfo(uid: recipe['uid'], userUid: widget.userUid),
             transitionsBuilder: (
               BuildContext context,
               Animation<double> animation,
@@ -69,9 +71,9 @@ class _ResultSearchState extends State<ResultSearch> {
               //     ),
               //   ),
               // ),
-               Container(
-                      color: Colors.black.withOpacity(0.3),
-                    ),
+              Container(
+                color: Colors.black.withOpacity(0.3),
+              ),
               Container(
                 padding: EdgeInsets.fromLTRB(
                     20.0, MediaQuery.of(context).size.height * 0.2, 20.0, 20.0),

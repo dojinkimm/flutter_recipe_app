@@ -69,18 +69,18 @@ flutter:
     - images/appbar.png
     - images/suggest/bakery.jpg
     - images/suggest/chicken.jpg
-    - images/suggest/dessert.jpeg
-    - images/suggest/egg.jpeg
-    - images/suggest/noodle.jpeg
+    - images/suggest/dessert.jpg
+    - images/suggest/egg.jpg
+    - images/suggest/noodle.jpg
     - images/suggest/rice.jpg
-    - images/suggest/salad.jpeg
-    - images/suggest/seafood.jpeg
-    - images/suggest/steak.jpeg
-    - images/suggest/beverage.jpeg
+    - images/suggest/salad.jpg
+    - images/suggest/seafood.jpg
+    - images/suggest/meat.jpg
+    - images/suggest/beverage.jpg
     - images/suggest/jigae.jpg
     - images/suggest/time.jpg
-    - images/suggest/fried.jpeg
-    - images/suggest/breakfast.jpeg
+    - images/suggest/fried.jpg
+    - images/suggest/breakfast.jpg
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

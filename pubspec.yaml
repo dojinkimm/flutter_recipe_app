@@ -26,7 +26,7 @@ dependencies:
   firebase_auth: 
   google_sign_in: ^3.2.4
   bubble_tab_indicator: ^0.1.3
-  flutter_slidable: ^0.4.9
+  flutter_typeahead: ^0.4.1
 
 
 
@@ -66,8 +66,21 @@ flutter:
     - images/ingredients/other.png
     - images/ingredients/tools.png
     - images/ingredients/009-kettle.png
-    - images/appbar.jpg
     - images/appbar.png
+    - images/suggest/bakery.jpg
+    - images/suggest/chicken.jpg
+    - images/suggest/dessert.jpeg
+    - images/suggest/egg.jpeg
+    - images/suggest/noodle.jpeg
+    - images/suggest/rice.jpg
+    - images/suggest/salad.jpeg
+    - images/suggest/seafood.jpeg
+    - images/suggest/steak.jpeg
+    - images/suggest/beverage.jpeg
+    - images/suggest/jigae.jpg
+    - images/suggest/time.jpg
+    - images/suggest/fried.jpeg
+    - images/suggest/breakfast.jpeg
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

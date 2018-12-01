@@ -68,8 +68,6 @@ class _LoginState extends State<Login> {
       }).catchError((e) => print(e));
     });
     //여기에서 저장된 데이터들을 DB로 올림
-
-
   }
 
   @override

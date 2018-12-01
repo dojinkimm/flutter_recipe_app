@@ -25,7 +25,7 @@ class _CategoryState extends State<Category> {
           children: <Widget>[
             Container(
               child: Image.asset(
-                'images/ingredients/$category\.png',
+                'images/ingredients/$category.png', width: 60.0,
               ),
             ),
             Column(

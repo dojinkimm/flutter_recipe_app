@@ -31,7 +31,7 @@ class _HomeState extends State<Home> {
     super.initState();
     print("HOME에서 ${widget.uid}");
     _currentIndex = 0;
-    _colorOfApp[_currentIndex] =  const Color(0xFFFF6347); //홈화면 아이콘과 글자 색깔 보라로 변경
+    _colorOfApp[_currentIndex] =  Colors.black; //홈화면 아이콘과 글자 색깔 보라로 변경
   }
 
   @override
@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
                 backgroundColor: _colorOfAppBack),
             BottomNavigationBarItem(
                 icon: Icon(Icons.kitchen, color: _colorOfApp[2]),
-                title: Text("마이냉장고",
+                title: Text("나만의 냉장고",
                     style:
                         TextStyle(color: _colorOfApp[2], fontSize: _fontSize)),
                 backgroundColor: _colorOfAppBack),

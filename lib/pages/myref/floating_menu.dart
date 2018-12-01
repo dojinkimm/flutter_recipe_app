@@ -140,7 +140,7 @@ class _FloatingMenuState extends State<FloatingMenu> {
                   child: Column(
                     children: <Widget>[
                       Container(
-                        margin: EdgeInsets.only(top: 15.0),
+                        margin: EdgeInsets.only(top: 30.0, bottom: 20.0),
                         child: Text(
                           "냉장고에 있는 재료와 양을 적어주세요",
                           textAlign: TextAlign.center,
@@ -184,11 +184,11 @@ class _FloatingMenuState extends State<FloatingMenu> {
                         ],
                       ),
                       Container(
-                          margin: EdgeInsets.only(top: 15.0),
+                          margin: EdgeInsets.only(top: 20.0),
                           child: Text("카테고리를 정해주세요",
                               style: TextStyle(fontSize: 20.0))),
                       Container(
-                          margin: EdgeInsets.only(top: 10.0),
+                          margin: EdgeInsets.only(top: 20.0),
                           child: _buildList(ingredList, context, state)),
                       Container(
                         margin: EdgeInsets.only(top: 10.0),

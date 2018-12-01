@@ -74,7 +74,7 @@ class _MyRefState extends State<MyRef> with SingleTickerProviderStateMixin {
                   child: Center(
                     child: Text(
                       "나만의 냉장고",
-                      style: TextStyle(color: Colors.white, fontSize: 40.0),
+                      style: TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                 )
@@ -86,15 +86,16 @@ class _MyRefState extends State<MyRef> with SingleTickerProviderStateMixin {
         labelColor: Colors.black,
         unselectedLabelColor: Colors.white,
         tabs: <Widget>[
-          Tab(text: totalList[0].category, icon: Image.asset(totalList[0].url)),
-          Tab(text: totalList[1].category, icon: Image.asset(totalList[1].url)),
-          Tab(text: totalList[2].category, icon: Image.asset(totalList[2].url)),
-          Tab(text: totalList[3].category, icon: Image.asset(totalList[3].url)),
-          Tab(text: totalList[4].category, icon: Image.asset(totalList[4].url)),
-          Tab(text: totalList[5].category, icon: Image.asset(totalList[5].url)),
-          Tab(text: totalList[6].category, icon: Image.asset(totalList[6].url)),
-          Tab(text: totalList[7].category, icon: Image.asset(totalList[7].url)),
+          Tab(text: totalList[0].category, icon: Image.asset(totalList[0].url, width: 40.0, height: 40.0,)),//tab bar 넓이 맞춰줘야함
+          Tab(text: totalList[1].category, icon: Image.asset(totalList[1].url,width: 40.0, height: 40.0)),
+          Tab(text: totalList[2].category, icon: Image.asset(totalList[2].url,width: 40.0, height: 40.0)),
+          Tab(text: totalList[3].category, icon: Image.asset(totalList[3].url,width: 40.0, height: 40.0)),
+          Tab(text: totalList[4].category, icon: Image.asset(totalList[4].url,width: 40.0, height: 40.0)),
+          Tab(text: totalList[5].category, icon: Image.asset(totalList[5].url,width: 40.0, height: 40.0)),
+          Tab(text: totalList[6].category, icon: Image.asset(totalList[6].url,width: 40.0, height: 40.0)),
+          Tab(text: totalList[7].category, icon: Image.asset(totalList[7].url,width: 40.0, height: 40.0)),
         ],
+        
         indicatorColor: Colors.yellow,
         indicatorSize: TabBarIndicatorSize.tab,
         indicator: new BubbleTabIndicator(
@@ -106,57 +107,3 @@ class _MyRefState extends State<MyRef> with SingleTickerProviderStateMixin {
     );
   }
 }
-
-// return DefaultTabController(
-//     length: totalList.length,d
-//     child: Scaffold(
-//         appBar: AppBar(
-//             elevation: 3.0,
-//             automaticallyImplyLeading: false,
-//             backgroundColor: Colors.white,
-// title: new Text(
-//   "마이 냉장고",
-//   style: TextStyle(
-//     fontSize: 40.0,
-//     fontWeight: FontWeight.bold,
-//     color: const Color(0xFFFF6347),
-//   ),
-// ),
-//             iconTheme: IconThemeData(color: Colors.black54),
-//             bottom: new TabBar(
-//               isScrollable: true,
-//               tabs: [
-// Tab(
-//     text: totalList[0].category,
-//     icon: Image.asset(totalList[0].url)),
-// Tab(
-//     text: totalList[1].category,
-//     icon: Image.asset(totalList[1].url)),
-// Tab(
-//     text: totalList[2].category,
-//     icon: Image.asset(totalList[2].url)),
-// Tab(
-//     text: totalList[3].category,
-//     icon: Image.asset(totalList[3].url)),
-// Tab(
-//     text: totalList[4].category,
-//     icon: Image.asset(totalList[4].url)),
-// Tab(
-//     text: totalList[5].category,
-//     icon: Image.asset(totalList[5].url)),
-// Tab(
-//     text: totalList[6].category,
-//     icon: Image.asset(totalList[6].url)),
-// Tab(
-//     text: totalList[7].category,
-//     icon: Image.asset(totalList[7].url)),
-//               ],
-//               indicatorSize: TabBarIndicatorSize.tab,
-//               indicator: new BubbleTabIndicator(
-//                 indicatorHeight: 60.0,
-//                 indicatorColor: const Color(0xFFFF6347),
-//                 tabBarIndicatorSize: TabBarIndicatorSize.tab,
-//               ),
-//             )),
-//         body: TabBarView(controller: _tabController, children: _children),
-//         floatingActionButton: FloatingMenu()));

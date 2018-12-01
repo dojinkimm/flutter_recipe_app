@@ -118,7 +118,8 @@ class _SplashScreenState extends State<SplashScreen> {
               Expanded(
                 flex: 1,
                 child: Text(
-                  "집에 있는 재료로 음식을 만들어봐요",
+                  "집에 있는 재료로 음식을 \n만들어봐요",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 25.0,

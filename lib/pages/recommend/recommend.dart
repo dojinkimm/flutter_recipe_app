@@ -59,8 +59,6 @@ class _RecommendState extends State<Recommend> {
               )),
           //추천수 가장 많은 유명한 메뉴들 추천
           Container(
-            // padding: EdgeInsets.only(
-            //     top: MediaQuery.of(context).size.height * 0.45),
             child: PopularSliding(),
           ),
 
@@ -101,19 +99,5 @@ class _RecommendState extends State<Recommend> {
         ],
       ),
     ));
-
-    //           // Container(
-    //           //   padding: EdgeInsets.only(left: 9.0, right: 9.0, top: 9.0),
-    //           //   height:
-    //           //       MediaQuery.of(context).size.height*0.5, //전체 높이의 30%를 차지하게 한다
-    //           //   child: ListView.builder(
-    //           //       itemCount: trashList.length,
-    //           //       itemBuilder: (BuildContext context, int index) {
-    //           //         final item = trashList[index];
-    //           //         return _buildList(context, item);
-    //           //       }),
-    //           // ),
-    //         ],
-    //       ));
   }
 }

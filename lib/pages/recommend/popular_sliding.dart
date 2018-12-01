@@ -37,7 +37,7 @@ class _PopularSlidingState extends State<PopularSliding> {
 
   Widget slider(List<DocumentSnapshot> lis) {
     return CarouselSlider(
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * 0.35,
       aspectRatio: 16 / 9,
       viewportFraction: 0.9,
       autoPlay: true,

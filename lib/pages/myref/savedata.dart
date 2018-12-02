@@ -16,7 +16,7 @@ Future<Null> saveData(BuildContext context, String category, String ingredient,
         .document(category);
 
     docRef.get().then((item) {
-      if (item.data['item'][0] == "") {
+      if (item.data['item'].length ==0) {
         docRef.updateData({'item': allItems, 'quantity': allQuantity});
       } else {
         for (int i = 0; i < item.data['item'].length; i++) {

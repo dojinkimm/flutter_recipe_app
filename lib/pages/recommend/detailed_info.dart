@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cookday/pages/recommend/add_delete.dart';
 
 class DetailedInfo extends StatefulWidget {
@@ -57,7 +56,8 @@ class _DetailedInfoState extends State<DetailedInfo> {
                         recipe['subtitle'],
                         recipe['cookTime'],
                         recipe['uid'],
-                        recipe['saved']), //제목이랑 subtitle, 시간을 포함한 부분
+                        recipe['saved'],
+                        recipe['imageURL']), //제목이랑 subtitle, 시간을 포함한 부분
                   ],
                 ),
               )),
@@ -77,7 +77,7 @@ class _DetailedInfoState extends State<DetailedInfo> {
   }
 
   Widget _buildHeader(
-      var recipeName, var subtitle, var cookTime, var recipeUid, var uidSaved) {
+      var recipeName, var subtitle, var cookTime, var recipeUid, var uidSaved, var imageURL) {
     //헤더 부분: 레시피 이름, 요리시간을 표시
     return Container(
         child: Column(
@@ -131,9 +131,9 @@ class _DetailedInfoState extends State<DetailedInfo> {
                 onPressed: () async {
                   if (uidSaved
                       .contains(widget.userUid)) //저장을 했으면 DB에 저장, 지우면 지우기
-                    deleteData(recipeUid);
+                    deleteData(recipeUid, recipeName, imageURL);
                   else
-                    saveData(recipeUid);
+                    saveData(recipeUid, recipeName, imageURL);
                 },
               )
             ],

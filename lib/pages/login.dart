@@ -36,7 +36,7 @@ class _LoginState extends State<Login> {
     Firestore.instance.document('users/${user.uid}').get().then((docSnap) {
       if (docSnap.data == null) {
         _newUserSaveDB();
-         MyNavigator.goToInitProfile(context, user.uid);
+        MyNavigator.goToInitProfile(context, user.uid);
       } else {
         Firestore.instance.document('users/${user.uid}').updateData({
           'lastLoginDate': new DateTime.now(),
@@ -61,7 +61,9 @@ class _LoginState extends State<Login> {
         'photoURL': user.photoUrl,
         'email': user.email,
         'lastLoginDate': new DateTime.now(),
-        'saved' : []
+        'saved': [], //나의 레시피 저장용도
+        'savedName': [],
+        'savedURL': [],
       }).then((d) {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Home(uid: user.uid)));
@@ -83,7 +85,7 @@ class _LoginState extends State<Login> {
                     fit: BoxFit.cover)),
           ),
           Container(
-            color:  Colors.black.withOpacity(0.55),
+            color: Colors.black.withOpacity(0.55),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
           ),

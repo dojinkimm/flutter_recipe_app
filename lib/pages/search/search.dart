@@ -8,7 +8,7 @@ import 'package:cookday/pages/search/result_search.dart';
 
 class Search extends StatefulWidget {
   final uid; //user의 uid
-  Search({Key key, this.uid}) :super (key : key);
+  Search({Key key, this.uid}) : super(key: key);
   @override
   _SearchState createState() => _SearchState();
 }
@@ -27,33 +27,35 @@ class _SearchState extends State<Search> {
   Widget _buildGridCards(BuildContext context, var document) {
     //Card형식의 디테일한 코드
     return InkWell(
-      onTap: (){
-         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                ResultSearch(category: document.category, name:document.name, userUid: widget.uid)));
-      },//테마별 리스트 나오게 구현해야함
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ResultSearch(
+                category: document.category,
+                name: document.name,
+                userUid: widget.uid)));
+      }, //테마별 리스트 나오게 구현해야함
       child: Card(
-      child: Stack(
-        children: <Widget>[
-          Container(
-            child: Image.asset(document.url,
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover),
-          ),
-          Container(
-            color: Colors.black.withOpacity(0.3),
-          ),
-          Center(
-            child: Text(document.name,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 18.0)),
-          )
-        ],
+        child: Stack(
+          children: <Widget>[
+            Container(
+              child: Image.asset(document.url,
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.cover),
+            ),
+            Container(
+              color: Colors.black.withOpacity(0.3),
+            ),
+            Center(
+              child: Text(document.name,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 18.0)),
+            )
+          ],
+        ),
       ),
-    ),
     );
   }
 
@@ -105,8 +107,8 @@ class _SearchState extends State<Search> {
                       },
                       onSuggestionSelected: (suggestion) {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                DetailedInfo(uid: suggestion['uid'], userUid: widget.uid)));
+                            builder: (context) => DetailedInfo(
+                                uid: suggestion['uid'], userUid: widget.uid)));
                       },
                     );
                   } else {
@@ -123,11 +125,10 @@ class _SearchState extends State<Search> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(left: 20.0, top: 20.0),
-            child: Text("테마별 요리", style: TextStyle(fontSize: 20.0))
-          ),
+              margin: EdgeInsets.only(left: 20.0, top: 20.0),
+              child: Text("테마별 요리", style: TextStyle(fontSize: 20.0))),
           Expanded(child: _buildList(suggestList))
-          ],
+        ],
       ),
     );
   }

@@ -68,6 +68,26 @@ class _LoginState extends State<Login> {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Home(uid: user.uid)));
       }).catchError((e) => print(e));
+
+      List<String> category = [
+        'beverage',
+        'dairy',
+        'fruit',
+        'meat',
+        'other',
+        'sauce',
+        'seafood',
+        'tools'
+      ];
+
+      for (int i = 0; i < category.length; i++) {
+        Firestore.instance
+            .collection('users')
+            .document(user.uid)
+            .collection('ingredients')
+            .document(category[i])
+            .setData({'item': [], 'quantity': [], 'uid': category[i]});
+      }
     });
     //여기에서 저장된 데이터들을 DB로 올림
   }

@@ -81,7 +81,7 @@ class _CategoryState extends State<Category> {
           } else {
             if (snapshot.data.documents != null) {
               final DocumentSnapshot document = snapshot.data.documents[0];
-              if (document['item'] == null || document['item'][0] == "") {
+              if (document['item'].length ==0) {
                 return Center(
                   child: Text(
                     "재료를 추가해주세요",

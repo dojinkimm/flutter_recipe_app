@@ -24,6 +24,12 @@ class _SearchState extends State<Search> {
     actionIcon = new Icon(Icons.search);
   }
 
+  @override
+  void dispose(){
+    super.dispose();
+
+  }
+
   Widget _buildGridCards(BuildContext context, var document) {
     //Card형식의 디테일한 코드
     return InkWell(
@@ -79,7 +85,8 @@ class _SearchState extends State<Search> {
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
-          SliverAppBar(title: appBarTitle, actions: <Widget>[
+          SliverAppBar(title: appBarTitle, automaticallyImplyLeading: false,
+          actions: <Widget>[
             new IconButton(
               icon: actionIcon,
               onPressed: () {

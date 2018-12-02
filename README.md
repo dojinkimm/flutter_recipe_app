@@ -12,6 +12,7 @@ Pic5 Added ingredients<br>
 Pic6 My page<br>
 Pic7 Setting page<br>
 
+<div>
 <img src="images/screenshot/home.png" width=200>
 <img src="images/screenshot/detail.png" width=200>
 <img src="images/screenshot/search.png" width=200>
@@ -19,6 +20,7 @@ Pic7 Setting page<br>
 <img src="images/screenshot/addrecipe1.png" width=200>
 <img src="images/screenshot/mypage.png" width=200>
 <img src="images/screenshot/setting.png" width=200>
+</div>
 
 
 

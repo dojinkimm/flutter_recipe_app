@@ -1,6 +1,6 @@
 # cookday
 
-A new Flutter project.
+Recipe application developed with Flutter - Hybrid Mobile application framework
 
 ## Getting Started
 

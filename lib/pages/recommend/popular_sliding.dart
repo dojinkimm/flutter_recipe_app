@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cookday/pages/recommend/detailed_info.dart';
 
 class PopularSliding extends StatefulWidget {
+  final userUid;
+  PopularSliding({Key key, this.userUid}) : super(key : key);
   @override
   _PopularSlidingState createState() => _PopularSlidingState();
 }
@@ -59,7 +61,7 @@ class _PopularSlidingState extends State<PopularSliding> {
         Navigator.of(context).push(new PageRouteBuilder(
             pageBuilder: (BuildContext context, Animation<double> animation,
                     Animation<double> secondaryAnimation) =>
-                new DetailedInfo(uid: uid),
+                new DetailedInfo(uid: uid, userUid: widget.userUid),//음식 uid와 user uid
             transitionsBuilder: (
               BuildContext context,
               Animation<double> animation,

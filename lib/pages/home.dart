@@ -38,8 +38,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final List<Widget> _children = [
       //각각 page들
-      new Recommend(),
-      new Search(),
+      new Recommend(uid: widget.uid),
+      new Search(uid: widget.uid),
       new MyRef(uid: widget.uid),
       new Profile(uid: widget.uid)
     ];

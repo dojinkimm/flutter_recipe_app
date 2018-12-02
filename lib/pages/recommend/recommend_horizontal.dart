@@ -3,8 +3,8 @@ import 'package:cookday/pages/recommend/detailed_info.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RecommendHorizontal extends StatefulWidget {
-  final trashList;
-  RecommendHorizontal({Key key, this.trashList}) : super(key: key);
+  final userUid;
+  RecommendHorizontal({Key key, this.userUid}) : super(key : key);
   @override
   _RecommendHorizontalState createState() => _RecommendHorizontalState();
 }
@@ -18,7 +18,7 @@ class _RecommendHorizontalState extends State<RecommendHorizontal> {
           Navigator.of(context).push(new PageRouteBuilder(
               pageBuilder: (BuildContext context, Animation<double> animation,
                       Animation<double> secondaryAnimation) =>
-                  new DetailedInfo(uid: item['uid']),
+                  new DetailedInfo(uid: item['uid'], userUid: widget.userUid),
               transitionsBuilder: (
                 BuildContext context,
                 Animation<double> animation,

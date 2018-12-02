@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cookday/pages/profile/setting.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cookday/pages/recommend/detailed_info.dart';
 
 class Profile extends StatefulWidget {
   final String uid;
@@ -9,103 +11,169 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  @override
-  Widget build(BuildContext context) {
-    Column buildStatColumn(String label, int number) {
-      return new Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          new Text(
-            number.toString(),
-            style: new TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
-          ),
-          new Container(
-              margin: const EdgeInsets.only(top: 4.0),
-              child: new Text(
-                label,
-                style: new TextStyle(
-                    color: Colors.grey,
-                    fontSize: 15.0,
-                    fontWeight: FontWeight.w400),
-              ))
-        ],
-      );
-    }
+  Widget _buildProfile(DocumentSnapshot user) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Expanded(
+            child: Stack(
+          children: <Widget>[
+            ClipPath(
+              child: Container(
+                color: Colors.black.withOpacity(0.7),
+              ),
+              clipper: getClipper(),
+            ),
+            Positioned(
+              width: 350.0,
+              top: MediaQuery.of(context).size.height * 0.1,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    width: 150.0,
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        image: DecorationImage(
+                            image: NetworkImage(user['photoURL']),
+                            fit: BoxFit.cover),
+                        borderRadius: BorderRadius.all(Radius.circular(75.0)),
+                        boxShadow: [
+                          BoxShadow(blurRadius: 7.0, color: Colors.black)
+                        ]),
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  Text(
+                    user['displayName'],
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Divider(),
+                ],
+              ),
+            )
+          ],
+        )),
+        Container(
+          margin: EdgeInsets.only(left: 20.0, top: 10.0),
+          child: Text("저장된 레시피들", style: TextStyle(color: Colors.grey, fontSize: 17.0)),
+        ),
+        Expanded(
+          child: _buildRecipe(user),
+        )
+      ],
+    );
+  }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: new Text("Profile",
-            style: new TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.white,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              semanticLabel: 'settings',
-              color: Colors.black,
+  Widget _buildGridCards(BuildContext context, String recipeUid,
+      String recipeName, String recipeURL) {
+    //Card형식의 디테일한 코드
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) =>
+                DetailedInfo(uid: recipeUid, userUid: widget.uid)));
+      }, //테마별 리스트 나오게 구현해야함
+      child: Card(
+        child: Stack(
+          children: <Widget>[
+            Container(
+              child: Image.network(recipeURL,
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.cover),
             ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Setting()),
-              );
-            },
-          ),
-        ],
-      ),
-      body: new ListView(
-        children: <Widget>[
-          new Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: new Column(
-              children: <Widget>[
-                new Row(
-                  children: <Widget>[
-                    // new CircleAvatar(
-                    //   radius: 40.0,
-                    //   backgroundColor: Colors.grey,
-                    //   backgroundImage: new NetworkImage("https://www.google.co.kr/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjdnpvv6_DeAhWMebwKHX8BBy0QjRx6BAgBEAU&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fbeauty%2F&psig=AOvVaw2-b6HMIGFFTkg5aYsSQO4J&ust=1543279922515873"),
-                    // ),
-                    new Expanded(
-                      flex: 1,
-                      child: new Column(
-                        children: <Widget>[
-                          new Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              buildStatColumn("posts", 3),
-                              buildStatColumn("followers", 4),
-                              buildStatColumn("following", 5),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                new Container(
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: new Text(
-                      "email", //email
-                      style: new TextStyle(fontWeight: FontWeight.bold),
-                    )),
-              ],
+            Container(
+              color: Colors.black.withOpacity(0.3),
             ),
-          ),
-          new Divider(),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.camera_alt,
-              semanticLabel: 'camera',
-            ),
-          ),
-        ],
+            Center(
+              child: Text(recipeName,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 18.0)),
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  Widget _buildRecipe(DocumentSnapshot user) {
+    return GridView.builder(
+        gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, mainAxisSpacing: 5.0, crossAxisSpacing: 5.0),
+        padding: const EdgeInsets.all(15.0),
+        itemCount: user['saved'].length,
+        itemBuilder: (_, int index) {
+          final recipeUid = user['saved'][index];
+          final recipeName = user['savedName'][index];
+          final recipeURL = user['savedURL'][index];
+          return Container(
+            child: _buildGridCards(context, recipeUid, recipeName, recipeURL),
+          );
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: new Text("프로필",
+              style: new TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.bold)),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.settings,
+                semanticLabel: 'settings',
+                color: Colors.black,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Setting()),
+                );
+              },
+            ),
+          ],
+        ),
+        body: StreamBuilder(
+            stream: Firestore.instance
+                .collection('users')
+                .where('uid', isEqualTo: widget.uid)
+                .snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData)
+                return Center(child: CircularProgressIndicator());
+              else {
+                if (snapshot.data.documents != null) {
+                  final DocumentSnapshot user = snapshot.data.documents[0];
+
+                  return _buildProfile(user);
+                }
+              }
+            }));
+  }
+}
+
+class getClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = new Path();
+    path.lineTo(0.0, size.height / 1.4);
+    path.lineTo(size.width + 150, 0.0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return true;
   }
 }

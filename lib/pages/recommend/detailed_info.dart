@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cookday/pages/recommend/add_delete.dart';
 
 class DetailedInfo extends StatefulWidget {
   final uid;
-  DetailedInfo({Key key, this.uid}) : super(key: key);
+  final userUid;
+  DetailedInfo({Key key, this.uid, this.userUid}) : super(key: key);
   @override
   _DetailedInfoState createState() => _DetailedInfoState();
 }
 
 class _DetailedInfoState extends State<DetailedInfo> {
-  bool likeThis = false;
-
   Widget scrollView(DocumentSnapshot recipe) {
     return NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -56,7 +55,9 @@ class _DetailedInfoState extends State<DetailedInfo> {
                         recipe['recipeName'],
                         recipe['subtitle'],
                         recipe['cookTime'],
-                        recipe['uid']), //제목이랑 subtitle, 시간을 포함한 부분
+                        recipe['uid'],
+                        recipe['saved'],
+                        recipe['imageURL']), //제목이랑 subtitle, 시간을 포함한 부분
                   ],
                 ),
               )),
@@ -76,7 +77,7 @@ class _DetailedInfoState extends State<DetailedInfo> {
   }
 
   Widget _buildHeader(
-      var recipeName, var subtitle, var cookTime, var recipeUid) {
+      var recipeName, var subtitle, var cookTime, var recipeUid, var uidSaved, var imageURL) {
     //헤더 부분: 레시피 이름, 요리시간을 표시
     return Container(
         child: Column(
@@ -121,29 +122,25 @@ class _DetailedInfoState extends State<DetailedInfo> {
               IconButton(
                 padding: EdgeInsets.only(right: 30.0),
                 icon: Icon(
-                  likeThis ? Icons.favorite : Icons.favorite_border,
+                  uidSaved.contains(widget.userUid)
+                      ? Icons.bookmark
+                      : Icons.bookmark_border,
                   size: 30.0,
-                  color: Colors.red,
+                  color: Colors.yellow,
                 ),
                 onPressed: () async {
-                  setState(() {
-                    likeThis = !likeThis;
-                  });
-                  if (likeThis) {
-                    FirebaseAuth.instance.currentUser().then((user) {
-                      Firestore.instance
-                          .collection('users')
-                          .document(user.uid)
-                          .updateData({'saved': recipeUid});
-                    });
-                  }
+                  if (uidSaved
+                      .contains(widget.userUid)) //저장을 했으면 DB에 저장, 지우면 지우기
+                    deleteData(recipeUid, recipeName, imageURL);
+                  else
+                    saveData(recipeUid, recipeName, imageURL);
                 },
               )
             ],
           ),
         ),
         Container(
-            padding: EdgeInsets.only(bottom: 15.0),
+            padding: EdgeInsets.only(bottom: 40.0),
             child: Center(
               child: Icon(
                 Icons.arrow_drop_down,
@@ -252,12 +249,13 @@ class _DetailedInfoState extends State<DetailedInfo> {
   Widget build(BuildContext context) {
     //Firestore에서 데이터를 불러온다
     return Scaffold(
-        body: FutureBuilder(
-            future: Firestore.instance
+        body: StreamBuilder(
+            stream: Firestore.instance
                 .collection('recipe')
                 .where('uid', isEqualTo: widget.uid)
-                .getDocuments(),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
+                .snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData)
                 return Center(child: CircularProgressIndicator());
               else {

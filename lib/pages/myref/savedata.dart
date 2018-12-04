@@ -7,16 +7,16 @@ Future<Null> saveData(BuildContext context, String category, String ingredient,
     String quantity) async {
   List allItems = new List();
   List allQuantity = new List();
-  List users = new List();
+  // List users = new List();
   allItems.add(ingredient);
   allQuantity.add(quantity);
   FirebaseAuth.instance.currentUser().then((user) {
     final DocumentReference docRef = Firestore.instance
         .document('users/${user.uid}')
         .collection('ingredients')
-        .document();
-    final DocumentReference ingredRef =
-        Firestore.instance.collection('ingredients').document(category);
+        .document(category);
+    // final DocumentReference ingredRef =
+    //     Firestore.instance.collection('ingredients').document(category);
 
     docRef.get().then((item) {
       if (item.data['item'].length == 0) {
@@ -31,19 +31,19 @@ Future<Null> saveData(BuildContext context, String category, String ingredient,
       }
     });
 
-    users.add(user.uid);
+  //   users.add(user.uid);
 
-    ingredRef.get().then((item) {
-      if (item['ingredient'] == ingredient) {
-        if (item.data['user'].length == 0) {
-          ingredRef.updateData({'user': users});
-        } else if (!item.data['user'].contains(user.uid)) {
-          for (int i = 0; i < item.data['user'].length; i++) {
-            users.add(item.data['users'][i]);
-          }
-          ingredRef.updateData({'user': users});
-        }
-      }
-    });
+  //   ingredRef.get().then((item) {
+  //     if (item['ingredient'] == ingredient) {
+  //       if (item.data['user'].length == 0) {
+  //         ingredRef.updateData({'user': users});
+  //       } else if (!item.data['user'].contains(user.uid)) {
+  //         for (int i = 0; i < item.data['user'].length; i++) {
+  //           users.add(item.data['users'][i]);
+  //         }
+  //         ingredRef.updateData({'user': users});
+  //       }
+  //     }
+  //   });
   });
 }

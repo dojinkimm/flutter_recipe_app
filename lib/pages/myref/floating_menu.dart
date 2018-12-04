@@ -4,7 +4,6 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import 'package:cookday/pages/myref/savedata.dart';
 import 'package:cookday/model/ingredients.dart';
-import 'package:cookday/pages/myref/barcode.dart';
 
 class FloatingMenu extends StatefulWidget {
   @override
@@ -287,10 +286,10 @@ class _FloatingMenuState extends State<FloatingMenu> {
           child: Icon(Icons.code, color: Colors.white),
           backgroundColor: Colors.blue,
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Barcode()));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (BuildContext context) => Barcode()));
           },
           label: '바코드',
           labelStyle: TextStyle(fontWeight: FontWeight.w500),

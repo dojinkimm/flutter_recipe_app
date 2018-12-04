@@ -25,9 +25,8 @@ class _SearchState extends State<Search> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
-
   }
 
   Widget _buildGridCards(BuildContext context, var document) {
@@ -44,18 +43,22 @@ class _SearchState extends State<Search> {
         child: Stack(
           children: <Widget>[
             Container(
+                child: Hero(
+              tag: document.url,
               child: Image.asset(document.url,
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover),
-            ),
+            )),
             Container(
               color: Colors.black.withOpacity(0.3),
             ),
             Center(
               child: Text(document.name,
+                  textDirection: TextDirection.ltr,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Hanna',
                       color: Colors.white,
                       fontSize: 18.0)),
             )
@@ -85,47 +88,51 @@ class _SearchState extends State<Search> {
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
-          SliverAppBar(title: appBarTitle, automaticallyImplyLeading: false,
-          actions: <Widget>[
-            new IconButton(
-              icon: actionIcon,
-              onPressed: () {
-                setState(() {
-                  if (this.actionIcon.icon == Icons.search) {
-                    //search icon 클릭시 글쓰는 칸으로 변한다
-                    this.actionIcon = new Icon(Icons.close);
-                    this.appBarTitle = TypeAheadField(
-                      //글을 쓰면 미리보기 처럼 listtile이 내려온다
-                      textFieldConfiguration: TextFieldConfiguration(
-                        autofocus: true,
-                        decoration: InputDecoration(
-                            border: InputBorder.none, hintText: '음식재료를 적어주세요'),
-                      ),
-                      suggestionsCallback: (pattern) async {
-                        //어떤 데이터들이 나열될지 호출
-                        return await BackendService.getSuggestions(pattern);
-                      },
-                      itemBuilder: (context, suggestion) {
-                        return ListTile(
-                          //불러온 데이터를 display
-                          leading: Icon(Icons.restaurant_menu),
-                          title: Text(suggestion['name']),
+          SliverAppBar(
+              title: appBarTitle,
+              automaticallyImplyLeading: false,
+              actions: <Widget>[
+                new IconButton(
+                  icon: actionIcon,
+                  onPressed: () {
+                    setState(() {
+                      if (this.actionIcon.icon == Icons.search) {
+                        //search icon 클릭시 글쓰는 칸으로 변한다
+                        this.actionIcon = new Icon(Icons.close);
+                        this.appBarTitle = TypeAheadField(
+                          //글을 쓰면 미리보기 처럼 listtile이 내려온다
+                          textFieldConfiguration: TextFieldConfiguration(
+                            autofocus: true,
+                            decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: '음식재료를 적어주세요'),
+                          ),
+                          suggestionsCallback: (pattern) async {
+                            //어떤 데이터들이 나열될지 호출
+                            return await BackendService.getSuggestions(pattern);
+                          },
+                          itemBuilder: (context, suggestion) {
+                            return ListTile(
+                              //불러온 데이터를 display
+                              leading: Icon(Icons.restaurant_menu),
+                              title: Text(suggestion['name']),
+                            );
+                          },
+                          onSuggestionSelected: (suggestion) {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => DetailedInfo(
+                                    uid: suggestion['uid'],
+                                    userUid: widget.uid)));
+                          },
                         );
-                      },
-                      onSuggestionSelected: (suggestion) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => DetailedInfo(
-                                uid: suggestion['uid'], userUid: widget.uid)));
-                      },
-                    );
-                  } else {
-                    this.actionIcon = new Icon(Icons.search);
-                    this.appBarTitle = new Text("검색하기");
-                  }
-                });
-              },
-            ),
-          ])
+                      } else {
+                        this.actionIcon = new Icon(Icons.search);
+                        this.appBarTitle = new Text("검색하기");
+                      }
+                    });
+                  },
+                ),
+              ])
         ];
       },
       body: Column(

@@ -5,7 +5,7 @@ import 'package:cookday/pages/recommend/detailed_info.dart';
 
 class PopularSliding extends StatefulWidget {
   final userUid;
-  PopularSliding({Key key, this.userUid}) : super(key : key);
+  PopularSliding({Key key, this.userUid}) : super(key: key);
   @override
   _PopularSlidingState createState() => _PopularSlidingState();
 }
@@ -50,6 +50,8 @@ class _PopularSlidingState extends State<PopularSliding> {
             lis[1]['recommend'], lis[1]['cookTime']),
         indivItems(lis[2]['uid'], lis[2]['imageURL'], lis[2]['recipeName'],
             lis[2]['recommend'], lis[2]['cookTime']),
+        indivItems(lis[3]['uid'], lis[3]['imageURL'], lis[3]['recipeName'],
+            lis[3]['recommend'], lis[3]['cookTime']),
       ],
     );
   }
@@ -61,7 +63,8 @@ class _PopularSlidingState extends State<PopularSliding> {
         Navigator.of(context).push(new PageRouteBuilder(
             pageBuilder: (BuildContext context, Animation<double> animation,
                     Animation<double> secondaryAnimation) =>
-                new DetailedInfo(uid: uid, userUid: widget.userUid),//음식 uid와 user uid
+                new DetailedInfo(
+                    uid: uid, userUid: widget.userUid), //음식 uid와 user uid
             transitionsBuilder: (
               BuildContext context,
               Animation<double> animation,
@@ -124,7 +127,9 @@ class _PopularSlidingState extends State<PopularSliding> {
                             padding: EdgeInsets.only(top: 15.0),
                             child: Text(title,
                                 style: TextStyle(
-                                    fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold)),
+                                    fontSize: 20.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
                           ),
                         ),
                         Expanded(

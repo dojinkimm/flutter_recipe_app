@@ -259,9 +259,13 @@ class _DetailedInfoState extends State<DetailedInfo> {
               if (!snapshot.hasData)
                 return Center(child: CircularProgressIndicator());
               else {
-                final DocumentSnapshot recipe = snapshot.data.documents[0];
+                if(snapshot.data.documents!=null){
+                  final DocumentSnapshot recipe = snapshot.data.documents[0];
 
                 return scrollView(recipe); //scroll할 수 있는 view를 만든다
+                }else{
+                  return Center(child: CircularProgressIndicator());
+                }
               }
             }));
   }

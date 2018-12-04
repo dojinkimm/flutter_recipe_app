@@ -101,7 +101,7 @@ class _MyRefState extends State<MyRef> with SingleTickerProviderStateMixin {
         indicator: new BubbleTabIndicator(
           indicatorHeight: 60.0,
           indicatorColor: Colors.white,
-          tabBarIndicatorSize: TabBarIndicatorSize.tab,
+          tabBarIndicatorSize: TabBarIndicatorSize.label,
         ),
       ),
     );

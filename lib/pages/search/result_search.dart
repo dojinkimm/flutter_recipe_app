@@ -134,8 +134,12 @@ class _ResultSearchState extends State<ResultSearch> {
                 child: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[
-                    Image.asset('images/suggest/${widget.category}.jpg',
-                        fit: BoxFit.cover),
+                    Hero(
+                      tag: 'images/suggest/${widget.category}.jpg',
+                      child: Image.asset(
+                          'images/suggest/${widget.category}.jpg',
+                          fit: BoxFit.cover),
+                    ),
                     Container(
                       color: Colors.black.withOpacity(0.3),
                     ),
@@ -143,9 +147,11 @@ class _ResultSearchState extends State<ResultSearch> {
                       child: Center(
                         child: Text(
                           widget.name,
+                          textDirection: TextDirection.ltr,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 40.0,
+                              fontFamily: 'Hanna',
                               fontWeight: FontWeight.bold),
                         ),
                       ),

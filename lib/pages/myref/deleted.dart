@@ -22,6 +22,11 @@ Future delete(BuildContext context, String foodDetail, String foodQuantity,
                       .document('users/${user.uid}')
                       .collection('ingredients')
                       .document(category);
+
+                  final DocumentReference ingredRef = Firestore.instance
+                      .collection('ingredients')
+                      .document();
+
                   Firestore.instance.runTransaction((Transaction tx) async {
                     DocumentSnapshot snapshot = await tx.get(docRef);
                     if (snapshot.data['item'].contains(foodDetail)) {

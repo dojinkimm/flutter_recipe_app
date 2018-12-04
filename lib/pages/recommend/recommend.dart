@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:cookday/pages/recommend/recommend_horizontal.dart';
 import 'package:cookday/pages/recommend/popular_sliding.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Recommend extends StatefulWidget {
   final uid;
   Recommend({Key key, this.uid}) :super(key : key);
@@ -11,10 +13,9 @@ class Recommend extends StatefulWidget {
 }
 
 class _RecommendState extends State<Recommend> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
+
+  Widget _buildBody(List<String> ingredUid){
+    return Container(
       color: Colors.white,
       child: ListView(
         children: <Widget>[
@@ -80,27 +81,43 @@ class _RecommendState extends State<Recommend> {
                 MediaQuery.of(context).size.height * 0.3, //전체 높이의 30%를 차지하게 한다
             child: RecommendHorizontal(
                 //가로로 scroll 가능한 item들 generate
-                userUid: widget.uid,
+                userUid: widget.uid, ingredUid: ingredUid
                 ),
           ),
-          // Container(
-          //     padding: EdgeInsets.fromLTRB(15.0, 20.0, 0.0, 0.0),
-          //     child: Text(
-          //       "SNS 핫한 음식들",
-          //       style: TextStyle(
-          //         fontSize: 25.0,
-          //       ),
-          //     )),
-          // Container(
-          //   padding: EdgeInsets.only(left: 9.0, right: 9.0, top: 9.0),
-          //   height:
-          //       MediaQuery.of(context).size.height * 0.3, //전체 높이의 30%를 차지하게 한다
-          //   child: RecommendHorizontal(
-          //       //가로로 scroll 가능한 item들 generate
-          //       ),
-          // ),
         ],
       ),
-    ));
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: FutureBuilder(
+        future: Firestore.instance.collection('ingredient').getDocuments(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData)
+            return Center(child: CircularProgressIndicator());
+          else {
+            List<DocumentSnapshot> allIngredient = snapshot.data.documents;
+            // List<DocumentSnapshot> myIngredient = new List<DocumentSnapshot>();
+            List<String> ingredUid = new List<String>();
+
+            allIngredient.forEach((d){
+              if(d.data['user'].contains(widget.uid)){
+                if(!ingredUid.contains(d.data['recipe'][0])){
+                  ingredUid.add(d.data['recipe'][0]);
+                }
+              }
+            });
+
+            return _buildBody(ingredUid);
+
+
+          }
+        }
+      )
+        
+    );
   }
 }
+
+

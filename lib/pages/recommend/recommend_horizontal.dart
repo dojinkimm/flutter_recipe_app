@@ -4,7 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RecommendHorizontal extends StatefulWidget {
   final userUid;
-  RecommendHorizontal({Key key, this.userUid}) : super(key : key);
+  final List<String> ingredUid;
+  RecommendHorizontal({Key key, this.userUid, this.ingredUid})
+      : super(key: key);
   @override
   _RecommendHorizontalState createState() => _RecommendHorizontalState();
 }
@@ -40,12 +42,6 @@ class _RecommendHorizontalState extends State<RecommendHorizontal> {
                 );
               },
               transitionDuration: const Duration(milliseconds: 200)));
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (BuildContext context) => DetailedInfo(
-          //               item: item,
-          //             )));
         },
         child: ConstrainedBox(
           constraints: new BoxConstraints(
@@ -88,22 +84,24 @@ class _RecommendHorizontalState extends State<RecommendHorizontal> {
               List<DocumentSnapshot> recipeForYou =
                   new List<DocumentSnapshot>();
 
-              int num = 0;
-              for (final i in allRecipes) {
-                if (num < 5) {
-                  recipeForYou.add(i);
-                  num++;
-                } else
-                  break;
+              widget.ingredUid.forEach((uid) {
+                allRecipes.forEach((d) {
+                  if (uid == d.data['uid'] && recipeForYou.length <= 5) {
+                    recipeForYou.add(d);
+                  }
+                });
+              });
+              if (recipeForYou.length != 0) {
+                return _buildList(recipeForYou);
+              } else {
+                return Container(
+                  child: Text("재료를 추가해주세요"),
+                );
               }
-
-              return _buildList(recipeForYou);
             } else {
               return Center(child: CircularProgressIndicator());
             }
           }
         });
   }
-
-  
 }

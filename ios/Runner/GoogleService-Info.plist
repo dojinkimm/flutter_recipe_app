@@ -11,7 +11,7 @@
 	<key>REVERSED_CLIENT_ID</key>
 	<string>com.googleusercontent.apps.856494453087-s5rm6gaj913v8vb88av2b2kl2rn4soo4</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDA9-_jLVjGvfdKUBDomGv2eYTKDACpuJU</string>
+	<string>YOUR_API_KEY</string>
 	<key>GCM_SENDER_ID</key>
 	<string>856494453087</string>
 	<key>PLIST_VERSION</key>
